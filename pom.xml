@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.8.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <groupId>com.sc</groupId>
+    <artifactId>common-parent-dependencies</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>common-parent-dependencies</name>
+    <description>common-parent-dependencies for common parent</description>
+    <url>https://www.github.com/freshlml/common-parent-dependencies</url>
+    <licenses>
+      <license>
+        <name>freshlml</name>
+        <url>https://www.github.com/freshlml/</url>
+      </license>
+    </licenses>
+    <developers>
+      <developer>
+        <name>freshlml</name>
+        <email>1326191992@qq.com</email>
+        <organization>freshlml</organization>
+        <organizationUrl>https://www.github.com/freshlml/</organizationUrl>
+      </developer>
+    </developers>
+    <scm>
+      <url>https://www.github.com/freshlml/common-parent-dependencies</url>
+    </scm>
+
+    <!-- 定义distribution地址,用于deploy -->
+    <!--<distributionManagement></distributionManagement>-->
+
+    <!-- 定义远端仓库地址 -->
+    <!--<repositories></repositories>-->
+    <!--<pluginRepositories></pluginRepositories>-->
+
+    <properties>
+        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
+
+        <mybatis-plus.version>3.2.0</mybatis-plus.version>
+        <druid.version>1.1.20</druid.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- spring cloud alibaba -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <pluginManagement>
+
+        </pluginManagement>
+    </build>
+</project>
