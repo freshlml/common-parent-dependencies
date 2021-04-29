@@ -43,7 +43,13 @@
     <!--<pluginRepositories></pluginRepositories>-->
 
     <properties>
+        <!-- https://spring.io/projects/spring-cloud#overview  -->
+        <!-- Greenwich版本release notes
+            https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Greenwich-Release-Notes
+        -->
+        <!-- D:\calm\Java_Member\19_md_result\Spring Cloud Greenwich 中文文档.html -->
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <!-- https://github.com/alibaba/spring-cloud-alibaba -->
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
 
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
