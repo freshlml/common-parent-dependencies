@@ -10,17 +10,17 @@
         <version>2.1.8.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>com.sc</groupId>
-    <artifactId>common-parent-dependencies</artifactId>
-    <version>1.0</version>
+    <groupId>com.xy</groupId>
+    <artifactId>xy-common-dependencies</artifactId>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
-    <name>common-parent-dependencies</name>
-    <description>common-parent-dependencies for common parent</description>
-    <url>https://www.github.com/freshlml/common-parent-dependencies</url>
+    <name>xy-common-dependencies</name>
+    <description>xy-common-dependencies</description>
+    <url>https://www.github.com/freshlml/xy-common-dependencies</url>
     <licenses>
       <license>
         <name>freshlml</name>
-        <url>https://www.github.com/freshlml/</url>
+        <url>https://www.github.com/freshlml/xy-common-dependencies</url>
       </license>
     </licenses>
     <developers>
@@ -32,7 +32,7 @@
       </developer>
     </developers>
     <scm>
-      <url>https://www.github.com/freshlml/common-parent-dependencies</url>
+      <url>https://www.github.com/freshlml/xy-common-dependencies</url>
     </scm>
 
     <!-- 定义distribution地址,用于deploy -->
