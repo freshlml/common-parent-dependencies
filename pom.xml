@@ -43,6 +43,13 @@
     <!--<pluginRepositories></pluginRepositories>-->
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
         <!-- https://spring.io/projects/spring-cloud#overview  -->
         <!-- Greenwich版本release notes
             https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Greenwich-Release-Notes
@@ -55,6 +62,30 @@
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <druid.version>1.1.20</druid.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <package.environment>dev</package.environment>
+            </properties>
+            <!--<activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>-->
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <package.environment>test</package.environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <package.environment>prod</package.environment>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencyManagement>
         <dependencies>
@@ -87,9 +118,82 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <build>
-        <pluginManagement>
 
+    <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>dev/*</exclude>
+                    <exclude>test/*</exclude>
+                    <exclude>prod/*</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/${package.environment}</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.xsd</include>
+                    <include>**/*.dtd</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <!-- plugin申明原则(在其生命周期和默认插件定义中)
+             1、maven会根据实际情况对其生命周期默认定义插件，通过最终的合并后的pom可看
+             2、插件申明或定义是穿插覆盖，项目中申明插件(根据自己要求指定配置或者版本等)，会与maven本身插件配置穿插覆盖，通过最终的合并后的pom可看
+          -->
+        <pluginManagement>
+            <plugins>
+                <!-- resources插件: goal=testResources,phase=process-test-resources; goal=resources,phase=process-resources
+                    使用sb的版本，指定编码
+                 -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+
+                <!-- compiler插件: goal=compiler,phase=compiler; goal=test-compiler,phase=test-compiler
+                    使用sb的版本，指定jdk版本
+                 -->
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+
+            </plugins>
         </pluginManagement>
+
+        <plugins>
+            <!-- 定义source插件
+                使用sb的版本
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
     </build>
 </project>
