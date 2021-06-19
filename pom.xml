@@ -61,6 +61,7 @@
 
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <druid.version>1.1.20</druid.version>
+        <rocketmq-version>4.5.0</rocketmq-version>
     </properties>
 
     <profiles>
@@ -115,6 +116,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
